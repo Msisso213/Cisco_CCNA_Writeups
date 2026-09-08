@@ -1,7 +1,12 @@
 Network: when differents nodes share information/ressources.
+
 Client: device that accesses a service made available by a server.
+
 Server: device that provides functions or services for a client.
+
 Switches: have many network interfaces/ports for end hosts to connect (usually 24+). Also provide connectivity to hosts within the same LAN
+
 Routers: have fewer interfaces/ports. They provide connectiviy between LANs.
+
 Firewalls: monitor and control traffic based on configured rules. They can be placed inside and outside networks. NGFW have more capabilities such as IPS, IDS. There are network firewalls (which will be discused
 in this course) and host-based firewall (which control what enter and leaves the host device).
