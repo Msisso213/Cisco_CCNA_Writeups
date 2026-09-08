@@ -1,0 +1,12 @@
+Ethernet: collection of network protocols/standards
+
+UTP cables use 4 twisted pairs (8 pins), with pins 1–2 and 3–6 being the pairs used for 10/100 Mbps Ethernet.
+
+Full-duplex means sending and receiving simultaneously.
+
+Traditionally, PCs, routers, and firewalls use the same pin assignment (1–2 = TX, 3–6 = RX), while switches use the opposite (1–2 = RX, 3–6 = TX). Therefore, a
+straight-through cable is used between different interface types (e.g., PC → switch), while a crossover cable swaps 1–2 ↔ 3–6 and is traditionally used between the
+same interface types (e.g., PC → PC, PC → router, router → router, firewall → router).
+
+Auto MDI-X, found on most modern Ethernet devices, automatically detects the TX/RX configuration and electronically adjusts it, meaning either a straight-through or
+crossover cable can usually be used, eliminating the need to manually choose the correct cable.
