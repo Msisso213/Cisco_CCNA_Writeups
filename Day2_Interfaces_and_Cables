@@ -1,12 +1,21 @@
 Ethernet: collection of network protocols/standards
 
-UTP cables use 4 twisted pairs (8 pins), with pins 1–2 and 3–6 being the pairs used for 10/100 Mbps Ethernet.
+UTP cables use 4 twisted pairs (8 pins). For 10/100 Mbps Ethernet, pins 1–2 and 3–6 are the two pairs used for communication, with one pair transmitting and the other 
+receiving
 
 Full-duplex means sending and receiving simultaneously.
 
 Traditionally, PCs, routers, and firewalls use the same pin assignment (1–2 = TX, 3–6 = RX), while switches use the opposite (1–2 = RX, 3–6 = TX). Therefore, a
 straight-through cable is used between different interface types (e.g., PC → switch), while a crossover cable swaps 1–2 ↔ 3–6 and is traditionally used between the
-same interface types (e.g., PC → PC, PC → router, router → router, firewall → router).
+same interface types (e.g., PC → PC, PC → router, router → router, firewall → router). With 1000BASE-T (Gigabit Ethernet) and 10GBASE-T, all 4 pairs are used, and each pair is
+bidirectional, meaning every pair can simultaneously carry data in both directions; therefore, the old idea of specific pairs being exclusively TX or RX no longer applies.
 
 Auto MDI-X, found on most modern Ethernet devices, automatically detects the TX/RX configuration and electronically adjusts it, meaning either a straight-through or
 crossover cable can usually be used, eliminating the need to manually choose the correct cable.
+
+Fiber optic cable: 2 connector in each end, one sends, the other receives (send connect to receive on one end and receive connect to send on the other). Singlemode fiber vs 
+multimode fiber: multimode fiber allows for different angles of light waves to enter which allows the transmission of more data, whereas singlemode allows only one light wave.
+
+Review:  utp -> low cost, shorter maximum distance (~100m), vulnerable to EMI, emit a faint signal which can be copied (security risk).
+         multimode fiber optic -> average cost, average maximum distance (~500m), not vulnerable to EMI, does not emit signal.
+         singlemode fiber optic -> high cost, higher maximum distance (~30km), not vulnerable to EMI, does not emit signal.
