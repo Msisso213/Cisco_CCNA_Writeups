@@ -1,3 +1,27 @@
 Protocols: set of rules defining how data should be communicated between devices over a network.
 
 Standards: agreed-upon specification that decsribes how a protocol or technology should work.
+
+TCP/IP Layers: Application layer -> the text of the letter, what you want to say
+               Transport layer -> the intended recipient
+               Internet layer -> the destination address of the recipient
+               Data-link -> destination of the next hop
+               Physical layer -> the infrastructure used
+
+Application -> protocols for communication between application processes; create and interpret data. Protocols at this layer define message formats and rules for example
+http/https, ftp/tftp, SMTP, IMAP, etc.
+
+Transport -> provides end-to-end communication between application processes using port numbers. Protocols at this layer are TCP and UDP. At this layer, the data is called
+segment (TCP) or datagram (UDP).
+
+Internet -> provides end-to-end communication between hosts across network using IP adresses and routers. Protocols at this layer are IP and ICMP. At this layer, the data is
+called packet.
+
+Data-link -> provides hop-to-hop delivery within a local network using MAC addresses and switches. Protocols at this layer are Ethernet and wifi. At this layer, the data is
+called a frame.
+
+Physical -> sends bits as electrical, optical, or radio signals over the physical medium.
+
+
+Payload: the data when we remove the header. So at layer 4, the payload is the application data (we remove the L4 header), at layer 3, it's the segment/datagram, at layer 2,
+it's the packet, and at layer 1, it's the frame.
