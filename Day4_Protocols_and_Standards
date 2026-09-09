@@ -4,7 +4,7 @@ Standards: agreed-upon specification that decsribes how a protocol or technology
 
 TCP/IP Layers: Application layer -> the text of the letter, what you want to say
                Transport layer -> the intended recipient
-               Internet layer -> the destination address of the recipient
+               Network layer -> the destination address of the recipient
                Data-link -> destination of the next hop
                Physical layer -> the infrastructure used
 
@@ -14,7 +14,7 @@ http/https, ftp/tftp, SMTP, IMAP, etc.
 Transport -> provides end-to-end communication between application processes using port numbers. Protocols at this layer are TCP and UDP. At this layer, the data is called
 segment (TCP) or datagram (UDP).
 
-Internet -> provides end-to-end communication between hosts across network using IP adresses and routers. Protocols at this layer are IP and ICMP. At this layer, the data is
+Network -> provides end-to-end communication between hosts across network using IP adresses and routers. Protocols at this layer are IP and ICMP. At this layer, the data is
 called packet.
 
 Data-link -> provides hop-to-hop delivery within a local network using MAC addresses and switches. Protocols at this layer are Ethernet and wifi. At this layer, the data is
