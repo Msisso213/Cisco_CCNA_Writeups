@@ -1,1 +1,12 @@
+Rollover cable are used to connect to the RJ45 console port on cisco device.
+Cisco default settings on putty under Serial: speed of 9600 bits/s, 8 data bits, 1 stop bits, parity of none and flow control none.
+By default, when we enter the cli, we are in user EXEC mode denoted by Router>
 
+Some commands: enable -> to enter priviledge exec mode denoted by Router#
+               configure terminal (once in priviledge exec mode) -> to enter global configuration mode denoted by Router(config)#
+               enable password <password> (once in global configuration mode) -> create a password for priviledge exec mode. TIf we want the password to be encrypted, we do enable secret <password>
+
+There are 2 config files: running-config (the one currently using) (show running-config) and startup-config (the one that will be used when the device boots again) (show startup-config)
+
+The word "no" before a command will stop a command that we runned. It won't cancel the effect, just the future command wont have the effect.
+The word "run" before a command acts the same as sudo before a command
