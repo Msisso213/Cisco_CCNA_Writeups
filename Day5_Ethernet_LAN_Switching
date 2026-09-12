@@ -14,4 +14,4 @@ When different devices are connected to a switch interface, the switch doesn't k
 wants to send data to another device. \the process is as follow. The device sends a frame to the switch. The switch looks at it's MAC address table, if the source MAC address
 is not in the table, it will add it. If the destination MAC address is not in the table (unknow unicast frame) it will send the frame to all the devices connected to its
 interface (flood the network).On the other hand, if the MAC address becomes known in the future (known unicast frame), it will only send the frame to the corresponding
-interface.
+interface. On Cisco switches, MAC addressed are removed after 5min of incativity. This whole process is called Dynamic MAC address.
