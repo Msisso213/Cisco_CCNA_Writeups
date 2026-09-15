@@ -15,3 +15,30 @@ wants to send data to another device. \the process is as follow. The device send
 is not in the table, it will add it. If the destination MAC address is not in the table (unknow unicast frame) it will send the frame to all the devices connected to its
 interface (flood the network).On the other hand, if the MAC address becomes known in the future (known unicast frame), it will only send the frame to the corresponding
 interface. On Cisco switches, MAC addressed are removed after 5min of incativity. This whole process is called Dynamic MAC address.
+
+The Preamble and SFD are usually not considered part of the Ethernet header, so the Ethernet frame header is only the destination, source and type.
+
+The minimum size for a frame is 64 bytes: 64 - 18 (header + trailer) so the minimum payload size is 46 bytes. If a packet has less than 46 bytes, padding is added (bunch of 0
+to make the payload 46 bytes).
+
+Assume we have this configuration:
+- PC1 -> IP: 192.168.1.1, MAC: 0C2F.B011.9D00
+- PC2 -> IP: 192.168.1.2, MAC: 0C2F.B084.6200
+- SW1 -> IP: 
+- SW2 -> IP:
+- PC3 -> IP: 192.168.1.3, MAC: 0C2F.B06A.3900
+- PC4 -> IP: 192.168.1.4, MAC: 0C2F.B01E.0A00
+
+PC1                PC3
+    \             /
+     SW1 - - - SW2
+    /             \
+PC2                PC4
+
+If PC1 wants to send data to PC3, how would it be done, since it knows only its IP address, but switches only know MAC address. The first step is to use ARP, which is used to 
+discover a layer 2 address (used by switches) when we know a layer 3 address. PC1 would then send an ARP request (broadcast, meaning the destination MAC is FFFF.FFFF.FFFF) to
+SW1. SW1 learns PC1 MAC address (dynamic MAC address) and bradcast the ARP request to all its interfaces (except the PC1 one). PC2 receives it and ignores it, SW2 receives it,
+learns PC1 MAC address and broadcasts it to all its interfaces. PC4 ignores it and PC3 reply with an ARP Reply, but this time, no boradcast will be needed since it knows the 
+MAC of PC1. Once PC1 receives the ARP Reply, it then sens the data.
+
+Ping uses
