@@ -41,4 +41,8 @@ SW1. SW1 learns PC1 MAC address (dynamic MAC address) and bradcast the ARP reque
 learns PC1 MAC address and broadcasts it to all its interfaces. PC4 ignores it and PC3 reply with an ARP Reply, but this time, no boradcast will be needed since it knows the 
 MAC of PC1. Once PC1 receives the ARP Reply, it then sens the data.
 
-Ping uses
+Ping uses ICMP (internet control message protocol) Echo Request and Echo Reply which uses known unicast.
+
+MAC addresses can be added to the mac address table dynamically or manually (static). On Cisco, you can view mac addresses by doing show mac address-table. You can also clear
+the table by doing clear mac address-table. Other options can be used for example clearing only the dynamic, clearing a specific address only, clearing mac addresses from an 
+interface, etc.
