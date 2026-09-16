@@ -1,1 +1,17 @@
+Routers need IP addresses for every network they connect to )every interface has its ip).
 
+IPv4 is 32 bits long (4 bytes). They can be divided into 4 class:
+A -> First octet is 0XXXXXXX and first octet numeric range 0-127 -> we usually consider the range finishing at 126 instead of 127, since anything in the range 127.0.0.0 - 127.255.255.255 is a loopback address and will always come back to the local host
+B -> First octet is 10XXXXXX and first octet numeric range 128-191
+C -> First octet is 110XXXXX and first octet numeric range 192-223
+D -> First octet is 1110XXXX and first octet numeric range 224-239
+E -> First octet is 1111XXXX and first octet numeric range 240-255
+
+We will be using only class A, B, and C which are respectively /8, /16/, and /24
+
+Netmask: it's another form of writing / in the IP address:
+A -> 255.0.0.0
+B -> 255.255.0.0
+C -> 255.255.255.0
+
+If the host portion of the IPv4 address is all 0's, it means it the network address. If the host portion is 255, it's the broadcast address.
