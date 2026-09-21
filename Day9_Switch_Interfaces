@@ -1,2 +1,19 @@
 Switch interfaces do not have the "shutdown" command applied by default (as opposed to routers) which will result in up/up state if connected to another device, or 
 down/down state if not connected.
+
+Show interfaces status to see the different interfaces of the switch
+
+Half duplex: device cannot send and receive data at the same time. It has to wait for the end of the other operation
+Full duplex: can both send and receive at the same time
+
+A hub is a device that will broadcast every message to all devices connected to it (it's considered layer 1). There is a high risk of collision using switch. To mitigate this, the devices 
+connected to the hub can do Carrier Sense Multiple Access with Collision Detection (CSMA-CD). Basically, before sending frames, devices listen until they detect that 
+other devices are not sending. If a collision does happen, the device sends a jamming signal to inform that a collision happened. Each device will wait a random 
+period of time before sending a frame again.
+
+Autonegociation should be used on all device to prevent duplex mismatching and collision.
+
+Different interface errors: runts -> frames that are smaller than the minimum frame size (64 bytes)
+                            giants -> frames that are larger than the maximum frame size (1518 bytes)
+                            CRC -> frames that failed the CRC check
+                            frame -> frames that have an incorrect format
