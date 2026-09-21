@@ -13,7 +13,19 @@ period of time before sending a frame again.
 
 Autonegociation should be used on all device to prevent duplex mismatching and collision.
 
+Show interfaces can also show the different errors detected on an interface
 Different interface errors: runts -> frames that are smaller than the minimum frame size (64 bytes)
                             giants -> frames that are larger than the maximum frame size (1518 bytes)
                             CRC -> frames that failed the CRC check
                             frame -> frames that have an incorrect format
+
+Autonegociation and autoduplex: if you connect a port configured as auto to a peer device that has auto-negotiation disabled (manually hardcoded speed and duplex), 
+the auto port uses a mechanism called parallel detection.The auto port determines its settings using two strict rules:The Speed Rule -> The switch analyzes the 
+electrical frequency of the incoming signals on the physical wire. It detects the exact speed (10, 100, or 1000 Mbps) with 100% accuracy, even if the other side
+refuses to negotiate.The Duplex Fallback Rule -> Because duplex mode cannot be sensed physically or electrically without communication, Cisco applies standard 
+fallback defaults based on the detected speed: If the detected speed is 10 Mbps or 100 Mbps, the port defaults to Half-Duplex. If the detected speed is 1000 Mbps 
+(1 Gbps) or higher the port defaults to Full-Duplex (because the Gigabit standard requires full-duplex)
+Example: Exam Trap: Cisco frequently tests you on this specific scenario. Imagine two connected switches: Switch A: Manually hardcoded to speed 100 and duplex 
+full. (Auto-negotiation is turned off). Switch B: Left at factory defaults (speed auto, duplex auto).What happens according to CCNA rules: Switch B senses the
+incoming electrical signals and sets its speed to 100 Mbps. Because Switch A is not sending negotiation pulses, Switch B applies the fallback rule for 100 Mbps 
+and sets its duplex to Half-Duplex. The Result: Switch A is in Full, Switch B is in Half. You now have a Duplex Mismatch.
