@@ -1,0 +1,2 @@
+Switch interfaces do not have the "shutdown" command applied by default (as opposed to routers) which will result in up/up state if connected to another device, or 
+down/down state if not connected.
