@@ -1,0 +1,14 @@
+Reminder, a packet is composed of an L3 header, an L4 header, and the data. We will focus in the L3 header:
+Version -> 4 bits, identifies the version of IP used (IPv4 = 4 = 0100 or IPv6 = 6 = 0110).
+Internet Header Length (IHL) -> 4 bits, tells the length of header in 4 bytes increments for example a value of 5 = 5x4 bytes = 20 bytes. The minimum is 5 (20 bytes) and max is 15 (60 bytes which includes maximum options).
+Differentiated Services Code Point (DSCP) -> 6 bits, used for QoS.
+Explicit Congestion Notification (ECN) -> 2 bits, provides end-to-end notification of network congestion.
+Total Length -> 16 bits, tells the total length of the packet (L3 header + L4 header + segment) in bytes (not in 4 bytes increments like IHL). Minimum is 20 bytes (IPv4 header with no encapsulated data) while the maximum is 65535 (maximum 16-bit value)
+Identification -> 16 bits, used if packet is fragmented due to being too large, this field is used to reconstruct the original packet.
+Flags -> 3 bits, used to identify fragmented packets. Bit 0 is reserved and always set to 0, bit 1 is don't fragment, used to indicate a packet should not be ragmented, bit 2 is more fragments, so it's set to 1 if more fragments to come or 0 if it's the last fragment
+Fragment Offset -> 13 bits, used to indicate the position of the fragment within the original unfragmented packet
+Time To Live -> 8 bits, indicate the hop count remaining
+Protocol -> 8 bits, indicates protocol used, 6 for TCP, 17 for UDP, 1 for ICMP, 89 for OSPF)
+Header checksum -> 16 bits, used to check for errors in the IPv4 header
+Source IP Address -> 32 bits, source IP address
+Destination IP Address -> 32 bits, destination IP address
