@@ -19,3 +19,5 @@ If the host portion of the IPv4 address is all 0's, it means it the network addr
 
 To see the different interfaces on cisco router (in priviledge exec mode): show ip interface brief then we can configure the ip address of the interface with ip 
 address <ip> <subnet>. We then have to change the state to up using: no shutdown
+
+Router interfaces have the shutdown command applied by default, which means that it will have the administratively down/down state by default.
