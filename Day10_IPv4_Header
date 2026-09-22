@@ -12,3 +12,4 @@ Protocol -> 8 bits, indicates protocol used, 6 for TCP, 17 for UDP, 1 for ICMP, 
 Header checksum -> 16 bits, used to check for errors in the IPv4 header
 Source IP Address -> 32 bits, source IP address
 Destination IP Address -> 32 bits, destination IP address
+Options field -> 0-320 bits, rarely used, if IHL is greater than 5, it means that options are present
