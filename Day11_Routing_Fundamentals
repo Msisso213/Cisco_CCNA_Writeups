@@ -1,4 +1,14 @@
 Routing: is the process that routers use to determine the path that packets should take to reach their destination. Routers store routes to all their known destination in a 
 routing table. There are dynamic routing (using protocols like OSPF) and static routing (manual setup). 
 
-Match: a route atches a packet's destination if the paclet's destination IP address is part of the network specified in the route.
+Match: a route matches a packet's destination if the paclet's destination IP address is part of the network specified in the route. If there are different matching routes 
+for a single ip, the most specific one will be used. For example, 192.168.1.1 goes to a router that has a connected route of 192.168.1.0/24 and 192.168.1.1/32. They're both
+matching route, but the later is more specific, so the router will use that one.
+
+When an IP address is configured on an interface and enable, two routes are automatically added to the routing table: connected route (network address of the subnet, will 
+learn this later) and local route (exact individual IP /32).
+
+Note the difference between routers and switches:
+
+Routers: uses IP, works with packets, looks for best matching route otherwise will drop packet
+Switches: uses MAC, works with frames, looks for exact MAC, otherwise will flood the network.
