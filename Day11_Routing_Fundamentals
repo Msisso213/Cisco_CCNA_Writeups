@@ -1,0 +1,4 @@
+Routing: is the process that routers use to determine the path that packets should take to reach their destination. Routers store routes to all their known destination in a 
+routing table. There are dynamic routing (using protocols like OSPF) and static routing (manual setup). 
+
+Match: a route atches a packet's destination if the paclet's destination IP address is part of the network specified in the route.
