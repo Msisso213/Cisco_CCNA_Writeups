@@ -12,3 +12,11 @@ Note the difference between routers and switches:
 
 Routers: uses IP, works with packets, looks for best matching route otherwise will drop packet
 Switches: uses MAC, works with frames, looks for exact MAC, otherwise will flood the network.
+
+Default gateway: old term for default router, it is the device to which endhosts send their packets if they want to communicate with other endhosts on other networks.
+
+Static routing: when we manually configure routing table on a router. To do this, we go on global conf mode and:
+R1(config)# ip route <ip-address-of-the-destination-network> <netmask> <next-hop>
+
+Two-way reachability: making sure that data is able to go to the destination and come back to the source by making sure both routes are configured
+
