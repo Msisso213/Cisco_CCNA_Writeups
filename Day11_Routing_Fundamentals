@@ -17,6 +17,11 @@ Default gateway: old term for default router, it is the device to which endhosts
 
 Static routing: when we manually configure routing table on a router. To do this, we go on global conf mode and:
 R1(config)# ip route <ip-address-of-the-destination-network> <netmask> <next-hop>
+It is also possible to configure static route with an exit interface instead of next-hop:
+R1(config)# ip route <ip-address-of-the-destination-network> <netmask> <exit-interface>
+We could also specify both R1(config)# ip route <ip-address-of-the-destination-network> <netmask> <exit-interface> <next-hop>
+
+Default route: it's a route to 0.0.0.0/0, often used to direct traffic to internet.
 
 Two-way reachability: making sure that data is able to go to the destination and come back to the source by making sure both routes are configured
 
