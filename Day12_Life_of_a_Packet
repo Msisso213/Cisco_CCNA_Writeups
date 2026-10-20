@@ -1,0 +1,76 @@
+Consider this topology:
+-----------------------------------
+|        192.168.1.0/24           |
+|                                 |       192.168.12.0/24
+| PC1 .1 ----- SW1 ---------.254 R1 .1 --------------------- .2 R2
+|(1111)Gi0/0 Gi0/1  Gi0/0    Gi0/2 .1 Gi0/1                 Gi0/0 .2
+|                           (aaaa)    (bbbb)             (cccc) |
+| ----------------------------- Gi0/1                         Gi0/1
+                                  |                           (dddd)
+                                  |                             |
+                                  |                             |
+                  192.168.13.0/24 |                             |  192.168.24.0/24
+                                  |                             |
+                                  |                             |
+                                  |                            Gi0/1 ----------------------------------
+                                Gi0/1                         (eeee)                                  |
+                                  .3                            .4          192.168.4.0/24            |
+                                  R3 .3 -------------------- .4 R4 .254 --------- SW4 -------- .1 PC4 |
+                                    Gi0/0  192.168.34.0/24 Gi0/0 | Gi0/2    Gi0/0    Gi0/1 Gi0/0(4444)|
+                                                                 |(fffe)                              |
+                                                                 |                                    |
+                                                                 --------------------------------------
+
+Assume we configured the static routes so that a packet goes from PC1 to PC4 using R2. MAC addresses were only added to the path we will follow. So let's say PC1
+wants to send data to PC4, here would be the steps:
+
+1. Src IP: 192.168.1.1 and Dst IP: 192.168.4.1. PC1 realises that Dst IP is in a different network, so it needs to send it to its default gateway first. But it doesn't 
+know its gateway yet, so it uses ARP.
+
+2. PC1 makes this ARP request packet: Src IP: 192.168.1.1, Dst IP: 192.168.1.254, Dst MAC: ffff, Src MAC: 1111
+
+3. SW1 receives the frame, and broadcast it to all its interfaces except the one it came from. SW1 will learn PC1 MAC address this way.
+
+4. R1 receives the frame and notices that the Dst IP is its IP, so it sends an ARP Reply with its MAC address to PC1: Src IP: 192.168.1.254, Dst IP: 192.168.1.1,
+Dst MAC: 1111, Src MAC: aaaa
+
+5. SW1 receives the ARP reply and sends it to PC1. It will learn R1 MAC address this way.
+
+6. PC1 sends a packet to R1 with the following: Src IP: 192.168.1.1 and Dst IP: 192.168.4.1, Dst MAC: aaaa, Src MAC: 1111.
+
+7. R1 receives the packet and check its routing table. It sees that the next hop for 192.168.4.0/24 is 192.168.12.2, but it doesnt know the MAC address, so it will
+use ARP.
+
+8. R1 makes this ARP request packet: Src IP: 192.168.12.1 and Dst IP: 192.168.12.2, Dst MAC: ffff, Src MAC: bbbb
+
+9. R2 receives the frame and notices that the Dst IP is its IP, so it sends an ARP Reply with its MAC address to PC1: Src IP: 192.168.12.2, Dst IP: 192.168.12.1,
+Dst MAC: bbbb, Src MAC: cccc
+
+10. R1 sends a packet to R2 with the following: Src IP: 192.168.1.1 and Dst IP: 192.168.4.1, Dst MAC: cccc, Src MAC: bbbb.
+
+11. R2 receives the packet and check its routing table. It sees that the next hop for 192.168.4.0/24 is 192.168.24.4, but it doesnt know the MAC address, so it will
+use ARP.
+
+12. R2 makes this ARP request packet: Src IP: 192.168.24.2 and Dst IP: 192.168.24.4, Dst MAC: ffff, Src MAC: dddd
+
+13. R4 receives the frame and notices that the Dst IP is its IP, so it sends an ARP Reply with its MAC address to PC1: Src IP: 192.168.24.4, Dst IP: 192.168.24.2,
+Dst MAC: dddd, Src MAC: eeee
+
+14. R2 sends a packet to R4 with the following: Src IP: 192.168.1.1 and Dst IP: 192.168.4.1, Dst MAC: eeee, Src MAC: dddd.
+
+15. R4 receives the packet and check its routing table. It sees that the next hop for 192.168.4.0/24 is directly connected in its Gi0/2, but it doesnt know the MAC
+address, so it will use ARP.
+
+16. R4 makes this ARP request packet: Src IP: 192.168.4.254 and Dst IP: 192.168.4.1, Dst MAC: ffff, Src MAC: fffe
+
+17. SW4 receives the frame, and broadcast it to all its interfaces except the one it came from. SW4 will learn R4 MAC address this way.
+
+18. PC4 receives the frame and notices that the Dst IP is its IP, so it sends an ARP Reply with its MAC address to R4: Src IP: 192.168.4.1, Dst IP: 192.168.4.254,
+Dst MAC: fffe, Src MAC: 4444
+
+19. SW4 receives the ARP reply and sends it to R4. It will learn PC4 MAC address this way.
+
+20. R4 sends a packet to PC4 with the following: Src IP: 192.168.1.1 and Dst IP: 192.168.4.1, Dst MAC: 4444, Src MAC: fffe.
+
+21. If PC4 needs to send data back to PC1, it will do the inverse route, except no need for ARP requests and reply since the devices know the different MAC 
+addresses now. They only have to forward the packet and encapsulated/deencapsulate with the correct MAC addresses.
