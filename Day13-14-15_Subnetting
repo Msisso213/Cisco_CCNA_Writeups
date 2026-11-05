@@ -15,3 +15,5 @@ Example: we are giving 192.168.255.0/24 and we want to divide it into 5 subnets.
 1. x = 3, since 2^3=8 and 2^2=4
 2. 2+24 = 27. So 2^(32-27)=32
 So Network1: 192.168.255.0/27, Network2: 192.168.255.32/27, Network3: 192.168.255.64/27, Network4: 192.168.255.96/27, Network5: 192.168.255.128/27, 
+
+VLSM (variable-lenght subnet mask)
