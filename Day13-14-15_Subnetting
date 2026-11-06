@@ -8,6 +8,7 @@ Subnet: 11111111.11111111.11111000.00000000
         |      Network        |    Host   |
 Gives:  10101100.00011001.11011000.00000000 which is 172.25.216.0/21
 
+
 Let's say now we have a network x.x.x.x/x and we want to just divide the network into subnets, regardless of the number of hosts required, we do the following:
 - x = the number of borrowed bits from the IP portion, we do 2^x until we have enough subnet. It's possible that we have too many subnets.
 - We then add x to the /x we had at the beginning and calculate the IP portion by doing 2^(32 - (/x from the beginning + x))
@@ -16,4 +17,6 @@ Example: we are giving 192.168.255.0/24 and we want to divide it into 5 subnets.
 2. 2+24 = 27. So 2^(32-27)=32
 So Network1: 192.168.255.0/27, Network2: 192.168.255.32/27, Network3: 192.168.255.64/27, Network4: 192.168.255.96/27, Network5: 192.168.255.128/27, 
 
-VLSM (variable-lenght subnet mask)
+FLSM (fixed-lenght subnet mask) vs VLSM (variable-lenght subnet mask): if we subnet using the same subnet prefix for example 24 everywhere, it's flsm. If the subnet
+masks are different lenght, it's called vlsm. We usually assign the largest subnetat the start, then the second largest, etc.
+
