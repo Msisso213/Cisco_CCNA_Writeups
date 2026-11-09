@@ -1,1 +1,5 @@
+LAN definition: group of devices that will receive a braodcast frame.
 
+Vlans (virtual local area network): used when we want to separate devices on the L2. Subnetting separates them on L3. Vlans are configured on the switch in each interfaces, 
+but it is not the switch that does the intervlan routing. When configuring Vlans on the switch, if we want a single vlan on an interface, we configure the interface as an
+access port. If we want many vlans on a single interface, we configure the interface as a trunk port.
