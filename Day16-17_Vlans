@@ -9,3 +9,5 @@ the source and the type field. It's a 4 bytes field (32 bits) and it has 4 field
 of the vlan. This VID is 12 bits which mean there are 4096 possible vlan (2^12) (0-4095), but the first and last one are reserved so we can actually have only 4094. 802.1Q
 has a feature called native vlan which is vlan 1 by default but can be changed manually. What it does is that all traffic going and coming from the native vlan dont 
 have to be tagged, so it is important that the native vlans match between switches if they are manually changed.
+
+Router on a Stick (ROAS): where we divide a single interface to route between multiple vlans ex -> g0/0.10
