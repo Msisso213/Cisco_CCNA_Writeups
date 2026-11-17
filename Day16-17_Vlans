@@ -1,0 +1,11 @@
+LAN definition: group of devices that will receive a braodcast frame.
+
+Vlans (virtual local area network): used when we want to separate devices on the L2. Subnetting separates them on L3. Vlans are configured on the switch in each interfaces, 
+but it is not the switch that does the intervlan routing. When configuring Vlans on the switch, if we want a single vlan on an interface, we configure the interface as an
+access port. If we want many vlans on a single interface, we configure the interface as a trunk port.
+
+The main trunking protocol is IEEE 802.1Q (dot1Q). When we use vlan, we have to add a tag to the ethernet packet header. The field is called 802.1Q field and is between
+the source and the type field. It's a 4 bytes field (32 bits) and it has 4 field inside it, the most important one being the VID field which is where we specify the ID
+of the vlan. This VID is 12 bits which mean there are 4096 possible vlan (2^12) (0-4095), but the first and last one are reserved so we can actually have only 4094. 802.1Q
+has a feature called native vlan which is vlan 1 by default but can be changed manually. What it does is that all traffic going and coming from the native vlan dont 
+have to be tagged, so it is important that the native vlans match between switches if they are manually changed.
