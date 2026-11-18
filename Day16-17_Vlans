@@ -16,4 +16,4 @@ Router on a Stick (ROAS): where we divide a single interface to route between mu
 
 ***Vlan that exist on a switch by default is different than the vlans that are allowed on a trunk by default***
 
-When we allow vlan on a trunk, we only allow vlan 
+When we configure a router a ROAS, the traffic that is leaving it will travel on the destination vlan, not on the source.
