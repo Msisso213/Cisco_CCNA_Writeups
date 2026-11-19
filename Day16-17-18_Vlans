@@ -1,3 +1,4 @@
+
 LAN definition: group of devices that will receive a braodcast frame.
 
 Vlans (virtual local area network): used when we want to separate devices on the L2. Subnetting separates them on L3. Vlans are configured on the switch in each interfaces, 
@@ -17,3 +18,11 @@ Router on a Stick (ROAS): where we divide a single interface to route between mu
 ***Vlan that exist on a switch by default is different than the vlans that are allowed on a trunk by default***
 
 When we configure a router a ROAS, the traffic that is leaving it will travel on the destination vlan, not on the source.
+
+Layer 3 Switches (L3): since they are L3, they can route traffic itself between different VLANs and local subnets without sending that traffic to an router using SVI
+(Switch Virtual Interfaces). We can assign IP addresses to these interfaces and we can configure the gateway on the pc to be these ip. In most internal local area
+network (LAN) cases, letting a Layer 3 switch handle inter-VLAN routing is better than using a router. These are the 4 conditions to have a working SVI:
+1. VLAN must exist on the switch (it will nto create it contrarly to access port if it doesn't exist)
+2. Switch must have at least one access port in the VLAN in an up/up state, AND/OR one trunk port that allows the VLAN that is in an up/up state
+3. VLAN must not be shutdown
+4. SVI itself must not be shutdown
