@@ -1,0 +1,14 @@
+Spanning Tree Protocol (STP): L2 protocol that allow us to have redunduncy in within a LAN. It's run on switches by default. It prevents L2 loops by placing 
+redundant ports in a blocking state (disables the interface) instead of the regular forwarding state. Interfaces in a blocking state only send/receive STP messages. 
+There's a set of processes to decide which ports are forwarding and which are blocking:
+
+1. Interfaces connected to pc are put in forwarding
+2. The switch with the lowest bridge ID (BID) will be the root. If they all have the default priority (32768), we will choose the one with the lowest MAC address. All
+ports on the root bridge are designated ports (forwarding state).
+3. The remaining switches will select one of its interfaces to be its root port, which is the one will the lowest root cost. The root port will be in a forwarding
+state and the ports accross it will be designated. The root cost depends on the interface speed: 
+10Mbps -> STP Cost of 100, 100Mbps -> STP Cost of 19, 1Gbps -> STP Cost of 4, 10Gbps -> STP Cost of 2. 
+If many ports have the same root cost, we chose the one with the lowest neighbor switch ID, then if they also have same neighbor switch ID (in case we have 2 
+connections between the switches) we check the lowest port ID on the neighbor.
+4. For remaining collision domain (2 ports facinf each other that we didnt touch yet), we select the interface with the lowest root cost then the lowest bridge ID to
+be designated. The other one will be non-designated (blocking state).
