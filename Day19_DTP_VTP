@@ -1,1 +1,7 @@
+**Not on the ccna exam**
 
+DTP (Dynamic Trunking Protocol):
+
+VTP (VLAN Trunking Protocol): allow cisco switches to dynamically switch their interfaces status (access/trunk) (for trunk it needs to be 2 cisco switches, otherwise
+it will be automatically access port). It's enable by default, so technically we dont need to do switchport mode access or switchport mode trunk, but we should
+disable it for security purposes.
