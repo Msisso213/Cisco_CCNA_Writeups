@@ -10,5 +10,5 @@ state and the ports accross it will be designated. The root cost depends on the 
 10Mbps -> STP Cost of 100, 100Mbps -> STP Cost of 19, 1Gbps -> STP Cost of 4, 10Gbps -> STP Cost of 2. 
 If many ports have the same root cost, we chose the one with the lowest neighbor switch ID, then if they also have same neighbor switch ID (in case we have 2 
 connections between the switches) we check the lowest port ID on the neighbor.
-4. For remaining collision domain (2 ports facing each other that we didnt touch yet), we select the interface with the lowest root cost then the lowest bridge ID to
-be designated. The other one will be non-designated (blocking state).
+4. For remaining collision domain (2 ports facing each other that we didnt touch yet), we select the device with the lowest root cost (even if it's another interface),
+then the lowest bridge ID to be designated. The other one will be non-designated (blocking state).
