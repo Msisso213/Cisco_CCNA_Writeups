@@ -30,4 +30,17 @@ Lasts 15 seconds (Forward Delay timer).
 STP Timers: they are time intervals used by the Spanning Tree Protocol (STP) in computer networking to control how switches exchange Bridge Protocol Data Units 
 (BPDUs), transition ports between states, and prevent switching loops during topology changes. There's 3 types:
 
-1. Hello timer -> 2s by default, it is the time it takes for the root bridge to send hello bdpus
+1. Hello timer -> 2s by default, it is the time it takes for the root bridge to send hello bdpus (only the root bridge sends them, other bridges forward them through
+their designated ports)
+2. Forward delay timer -> it's the time that the switch will stay in listening and learning states, 15s by default on each state
+3. Max age timer -> how long an interface will wait to change stp topology after ceasing to receive hello bdpus. It reset every time a bdpu is received. 20s by default.
+
+When a bpdu is sent, the destination on the ethernet header will be the pvst+ mac address which is 01:00:0c:cc:cc:cd
+
+Spanning tree toolkit: optional features of stp to improve the functionality depending on the context. The tools are the following:
+- Portfast: this can be enabled on port that are connected to endhosts. When they are first turned on, they must go through the listening and learning states before 
+being in the forwarding state which can take 30s. Portfast can be used to skip these 30s. We should be cautious when using this and only use it on interfaces that are
+connected to endhost to prevent stp loops.
+
+BPDU Guard: this can be enabled on ports and if they receive a BPDU from another switch, the interface will be shut down to prvent a loop.
+
