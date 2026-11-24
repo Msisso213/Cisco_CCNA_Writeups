@@ -12,3 +12,22 @@ If many ports have the same root cost, we chose the one with the lowest neighbor
 connections between the switches) we check the lowest port ID on the neighbor.
 4. For remaining collision domain (2 ports facing each other that we didnt touch yet), we select the device with the lowest root cost (even if it's another interface),
 then the lowest bridge ID to be designated. The other one will be non-designated (blocking state).
+
+There are 4 STP Port state: we previously covered forwarding and blocking which are stable states, but we also have listening and learning which are transitional states
+that occur when some changes happen in the topology and an interface needs to change from blocking to forwarding. This is the process:
+
+• Blocking state: drops user data frames, does not learn MAC addresses, and only receives Bridge Protocol Data Units (BPDUs) to map the topology and prevent loops. 
+Lasts up to 20 seconds (Max Age timer) before transitioning if a redundant link must take over.
+
+• Listening: still drops user frames and does not learn MAC addresses, but both sends and receives BPDUs as switches elect the root bridge and determine port roles. 
+Lasts 15 seconds (Forward Delay timer).
+
+• Learning: continues processing BPDUs and begins learning source MAC addresses to populate the MAC address table, but still does not forward user data frames. 
+Lasts 15 seconds (Forward Delay timer).
+
+• Forwarding: Actively forwards and receives user data frames, continues learning MAC addresses, and processes BPDUs on active root and designated ports.
+
+STP Timers: they are time intervals used by the Spanning Tree Protocol (STP) in computer networking to control how switches exchange Bridge Protocol Data Units 
+(BPDUs), transition ports between states, and prevent switching loops during topology changes. There's 3 types:
+
+1. Hello timer -> 2s by default, it is the time it takes for the root bridge to send hello bdpus
