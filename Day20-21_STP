@@ -38,9 +38,9 @@ their designated ports)
 When a bpdu is sent, the destination on the ethernet header will be the pvst+ mac address which is 01:00:0c:cc:cc:cd
 
 Spanning tree toolkit: optional features of stp to improve the functionality depending on the context. The tools are the following:
-- Portfast: this can be enabled on port that are connected to endhosts. When they are first turned on, they must go through the listening and learning states before 
-being in the forwarding state which can take 30s. Portfast can be used to skip these 30s. We should be cautious when using this and only use it on interfaces that are
-connected to endhost to prevent stp loops.
-
-BPDU Guard: this can be enabled on ports and if they receive a BPDU from another switch, the interface will be shut down to prvent a loop.
+- Portfast: this should be enabled on port that are connected to endhosts, vms, and when we use router on a stick (ROAS). When they are first turned on, they must go 
+through the listening and learning states before being in the forwarding state which can take 30s. Portfast can be used to skip these 30s. We should be cautious when using
+this and only use it on interfaces that are connected to endhost to prevent stp loops. We can enable it while on the interface config mode "spanning-tree portfast" or in
+global config "spanning-tree portfast default" which enable portfast on all access ports.
+-BPDU Guard: this can be enabled on ports and if they receive a BPDU from another switch, the interface will be shut down to prvent a loop.
 
