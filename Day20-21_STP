@@ -42,5 +42,8 @@ Spanning tree toolkit: optional features of stp to improve the functionality dep
 through the listening and learning states before being in the forwarding state which can take 30s. Portfast can be used to skip these 30s. We should be cautious when using
 this and only use it on interfaces that are connected to endhost to prevent stp loops. We can enable it while on the interface config mode "spanning-tree portfast" or in
 global config "spanning-tree portfast default" which enable portfast on all access ports.
--BPDU Guard: this can be enabled on ports and if they receive a BPDU from another switch, the interface will be shut down to prvent a loop.
-
+-BPDU Guard: this can be enabled on ports and if they receive a BPDU from another switch (for example if an interface was first connected to a pc and then a user decides 
+to connect a switch instead), the interface will be shut down to prvent a loop. We can enable it while on the interface config mode "spanning-tree bpduguard enable" or in
+global config "spanning-tree bpduguard default" which will enable bpduguard only on portfast ports, not all ports *** (remmember this little trap). If it does happen that 
+the port gets shutdown because of bpdu, reconnecting anything to the port wont work until we manually re-enable the port (shut/no-shut) or it will re-enable by default after
+5min if we have the "errdisable recovery cause bpduguard"
