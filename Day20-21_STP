@@ -47,3 +47,9 @@ to connect a switch instead), the interface will be shut down to prvent a loop. 
 global config "spanning-tree bpduguard default" which will enable bpduguard only on portfast ports, not all ports *** (remmember this little trap). If it does happen that 
 the port gets shutdown because of bpdu, reconnecting anything to the port wont work until we manually re-enable the port (shut/no-shut) or it will re-enable by default after
 5min if we have the "errdisable recovery cause bpduguard"
+-BPDU Filter: stops a port from sending BPDU. It wont disable the port if it receives BPDU. Can be enable in interface config "spanning-tree bpdufilter enable" (which will
+basically disable stp on the port) or by doing it by default with "spanning-tree portfast bpdufilter default" (which is activated only on portfast ports, and if it receives
+bpdu, portfast and bpdu filter are disabled and it acts as normal STP port). In general, we should only enable bpdu filter by default (we should have a good reason to do it
+per-port).
+
+***Good to revise the different cases with portfast, BPDU Guard, BPDU Filter, and what would happen if the port receive/sends bpdu
